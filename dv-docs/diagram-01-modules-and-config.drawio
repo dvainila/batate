@@ -1,0 +1,99 @@
+<mxfile host="Electron">
+  <diagram name="BMAD Architecture Layers" id="Moe823A7jGyy3d7yrm1a">
+    <mxGraphModel dx="1064" dy="640" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="14000" pageHeight="9500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lvl1-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;" value="&lt;b&gt;Уровень 1: Структура исходников (src/)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="320" x="40" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="src-root" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=13;" value="&lt;b&gt;src/&lt;/b&gt;" vertex="1">
+          <mxGeometry height="36" width="120" x="300" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="src-core" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;core-skills/&lt;/b&gt;&lt;hr&gt;• module.yaml&lt;br&gt;• module-help.csv&lt;br&gt;• bmad-help/&lt;br&gt;• bmad-customize/&lt;br&gt;• bmad-party-mode/&lt;br&gt;• bmad-review/, ..." vertex="1">
+          <mxGeometry height="125" width="170" x="40" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="src-bmm" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;bmm-skills/&lt;/b&gt;&lt;hr&gt;• agents/ (5 агентов)&lt;br&gt;• plan/ (PRD, Arch, Spec...)&lt;br&gt;• ship/ (Build, Review, QA...)&lt;br&gt;• v6-shims/ (deprecated)&lt;br&gt;• &lt;b&gt;module.yaml&lt;/b&gt;&lt;br&gt;• &lt;b&gt;module-help.csv&lt;/b&gt;" vertex="1">
+          <mxGeometry height="125" width="220" x="250" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="src-scripts" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;scripts/ (Python 3.11+)&lt;/b&gt;&lt;hr&gt;• resolve_config.py&lt;br&gt;• resolve_customization.py&lt;br&gt;• render_skill.py&lt;br&gt;• memlog.py&lt;br&gt;• config_utils.py" vertex="1">
+          <mxGeometry height="125" width="210" x="510" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-src-core" edge="1" parent="1" source="src-root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" target="src-core">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-src-bmm" edge="1" parent="1" source="src-root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="src-bmm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-src-scripts" edge="1" parent="1" source="src-root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.75;exitY=1;entryX=0.5;entryY=0;" target="src-scripts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="divider-h" parent="1" style="line;strokeWidth=2;dashed=1;strokeColor=#999999;html=1;" value="" vertex="1">
+          <mxGeometry height="10" width="930" x="40" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="lvl2-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;" value="&lt;b&gt;Уровень 2: Разбор bmm-skills (module-help.csv и module.yaml)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="480" x="40" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="bmm-help-csv" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;module-help.csv&lt;/b&gt;&lt;hr&gt;Таблица скиллов модуля:&lt;br&gt;&lt;code&gt;module, skill, display-name, menu-code, phase, output-location, outputs&lt;/code&gt;&lt;br&gt;&lt;i&gt;(список доступных команд и куда они пишут артефакты)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="105" width="330" x="40" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="help-target" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacingLeft=10;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;Индекс помощи&lt;/b&gt;&lt;br&gt;Склеивается установщиком в общий каталог.&lt;br&gt;Читает &lt;b&gt;bmad-help&lt;/b&gt;, чтобы подсказать пользователю следующий шаг." vertex="1">
+          <mxGeometry height="85" width="260" x="430" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-help" edge="1" parent="1" source="bmm-help-csv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="help-target">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mod-yaml" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;b&gt;src/bmm-skills/module.yaml&lt;/b&gt;" vertex="1">
+          <mxGeometry height="390" width="330" x="40" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="mod-yaml-meta" parent="mod-yaml" style="text;strokeColor=#6c8ebf;fillColor=#ffffff;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;1. Module metadata&lt;/b&gt;&lt;br&gt;• code: bmm&lt;br&gt;• name: &quot;BMad Method&quot;&lt;br&gt;• description, default_selected: true" vertex="1">
+          <mxGeometry height="80" width="330" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mod-yaml-questions" parent="mod-yaml" style="text;strokeColor=#d6b656;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;2. Install questions (prompt:)&lt;/b&gt;&lt;br&gt;• user_skill_level &lt;i&gt;(scope: user)&lt;/i&gt;&lt;br&gt;• planning_artifacts &lt;i&gt;(default: {output_folder}/planning-artifacts)&lt;/i&gt;&lt;br&gt;• implementation_artifacts&lt;br&gt;• project_knowledge &lt;i&gt;(default: docs)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="120" width="330" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="mod-yaml-agents" parent="mod-yaml" style="text;strokeColor=#6c8ebf;fillColor=#e6f0ff;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;b&gt;3. agents: (краткие описания / эссенция)&lt;/b&gt;&lt;br&gt;Список: code, name, title, icon, team, description&lt;br&gt;• bmad-agent-analyst (Mary)&lt;br&gt;• bmad-agent-pm (John)&lt;br&gt;• bmad-agent-ux-designer (Sally)&lt;br&gt;• bmad-agent-architect (Winston)&lt;br&gt;• bmad-agent-dev (Amelia)" vertex="1">
+          <mxGeometry height="160" width="330" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="meta-target" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacingLeft=10;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;Выбор модуля при установке&lt;/b&gt;&lt;br&gt;Задаёт ключ секции &lt;code&gt;[modules.bmm]&lt;/code&gt; и выбор по умолчанию в пикере." vertex="1">
+          <mxGeometry height="65" width="260" x="430" y="485" as="geometry" />
+        </mxCell>
+        <mxCell id="installer-questions" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacingLeft=10;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;Установщик (tools/installer/)&lt;/b&gt;&lt;br&gt;&lt;code&gt;core/config.js&lt;/code&gt; превращает &lt;code&gt;prompt:&lt;/code&gt; в вопросы пользователю при &lt;code&gt;bmad install&lt;/code&gt; (или флаги &lt;code&gt;--set bmm.*&lt;/code&gt;)." vertex="1">
+          <mxGeometry height="100" width="260" x="430" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="bmad-config-toml" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;{project-root}/_bmad/config.toml&lt;/b&gt;&lt;br&gt;&lt;i&gt;(собирается при установке: manifest-generator.js)&lt;/i&gt;&lt;hr&gt;&lt;b&gt;[core]&lt;/b&gt; — project_name, output_folder&lt;br&gt;&lt;b&gt;[modules.bmm]&lt;/b&gt; — пути артефактов&lt;br&gt;&lt;b&gt;[agents.bmad-agent-analyst]&lt;/b&gt;&lt;br&gt;&lt;b&gt;[agents.bmad-agent-pm]&lt;/b&gt; ...&lt;br&gt;&lt;i&gt;(таблицы с описаниями агентов)&lt;/i&gt;&lt;hr&gt;&lt;span style=&quot;font-size:10px&quot;&gt;+ _bmad/config.user.toml (личные поля с scope: user)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="235" width="240" x="730" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-meta" edge="1" parent="1" source="mod-yaml-meta" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="meta-target">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-questions" edge="1" parent="1" source="mod-yaml-questions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="installer-questions">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-installer-to-toml" edge="1" parent="1" source="installer-questions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=10;" target="bmad-config-toml" value="пишет ответы">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-agents-to-toml" edge="1" parent="1" source="mod-yaml-agents" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.75;fontSize=10;" target="bmad-config-toml" value="collectAgentsFromModuleYaml()">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="divider-v" parent="1" style="line;direction=south;strokeWidth=2;dashed=1;strokeColor=#666666;html=1;" value="" vertex="1">
+          <mxGeometry height="860" width="10" x="995" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="runtime-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;" value="&lt;b&gt;Runtime (вызов у пользователя)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="320" x="1030" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="party-mode" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;Вызов bmad-party-mode&lt;/b&gt;&lt;hr&gt;1. Запускает &lt;code&gt;resolve_party.py&lt;/code&gt;&lt;br&gt;2. Вызывает &lt;code&gt;_bmad/scripts/resolve_config.py&lt;/code&gt;&lt;br&gt;3. Читает таблицы &lt;b&gt;[agents.*]&lt;/b&gt; из собранного &lt;code&gt;_bmad/config.toml&lt;/code&gt; (+ оверрайды)&lt;br&gt;4. Берёт оттуда &lt;b&gt;краткое описание агентов&lt;/b&gt;, чтобы собрать команду / комнату без чтения каждого скилла." vertex="1">
+          <mxGeometry height="145" width="330" x="1030" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-toml-to-party" edge="1" parent="1" source="bmad-config-toml" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.3;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#9673a6;fontSize=10;" target="party-mode" value="берёт [agents.*]">
+          <mxGeometry relative="1" x="0.2308" y="17" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="agent-runtime-note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;Вызов отдельного агента (напр. Mary)&lt;/b&gt;&lt;hr&gt;Скилл лежит в &lt;code&gt;.agents/skills/bmad-agent-analyst/&lt;/code&gt;.&lt;br&gt;Детальное поведение (principles, persistent_facts, [[agent.menu]]) берётся через &lt;code&gt;resolve_customization.py&lt;/code&gt; из &lt;code&gt;customize.toml&lt;/code&gt; + &lt;code&gt;_bmad/custom/bmad-agent-analyst.toml&lt;/code&gt;." vertex="1">
+          <mxGeometry height="125" width="330" x="1030" y="725" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,347 @@
+<mxfile host="Electron">
+  <diagram name="Skill execution and memory" id="skill-exec-memory-01">
+    <mxGraphModel dx="2000" dy="1300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="2800" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="&lt;b&gt;Уровень 3: Работа скиллов и агентов от слэш-команды до результата&lt;/b&gt; (четыре типа раскладок и связи со слоем памяти)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="100" y="10" width="1100" height="32" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend" value="&lt;b&gt;Легенда шин и стрелок:&lt;/b&gt;   &lt;font color=&quot;#7B1FA2&quot;&gt;&lt;b&gt;━━ конфиги&lt;/b&gt;&lt;/font&gt;    |    &lt;font color=&quot;#1B8A3D&quot;&gt;&lt;b&gt;━━ память сессии&lt;/b&gt;&lt;/font&gt;    |    &lt;font color=&quot;#1565C0&quot;&gt;&lt;b&gt;━━ артефакты и код&lt;/b&gt;&lt;/font&gt;    |    сплошная = пишет/обновляет,  пунктир = читает/проверяет" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="100" y="44" width="1150" height="24" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== TOP MEMORY LAYER (FRAMED, y=85..320) ==================== -->
+        <mxCell id="mem-frame" value="&lt;b&gt;Слой памяти, конфигов и артефактов (общее хранилище проекта)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;fillColor=#f9f9f9;strokeColor=#444444;strokeWidth=2;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="100" y="85" width="2420" height="235" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mem-config" value="&lt;b&gt;Конфиги + статическая память&lt;/b&gt;&lt;hr&gt;• {project-root}/_bmad/config.toml + config.user.toml&lt;br&gt;  (user_name, languages, planning_artifacts, implementation_artifacts, [agents.*])&lt;br&gt;• {skill-root}/customize.toml + _bmad/custom/&lt;skill&gt;.toml (+ .user.toml)&lt;br&gt;  (persistent_facts, activation_steps_*, principles, [[agent.menu]], on_complete)&lt;br&gt;• {project-root}/AGENTS.md (managed block от bmad-project-context)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="120" y="125" width="680" height="175" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mem-session" value="&lt;b&gt;Оперативная память сессии&lt;/b&gt;&lt;hr&gt;• {doc_workspace}/.memlog.md через _bmad/scripts/memlog.py&lt;br&gt;  (init / append / set; resume читает файл напрямую)&lt;br&gt;• Frontmatter выходных документов:&lt;br&gt;  stepsCompleted[], status (draft/final), inputDocuments[]&lt;br&gt;• Rendered snapshot workflow.md (только для bmad-build)&lt;br&gt;• Контекст персоны агента в чате (иконка, стиль, принципы, persistent_facts)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="960" y="125" width="680" height="175" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mem-art" value="&lt;b&gt;Артефакты и код проекта&lt;/b&gt;&lt;hr&gt;• {planning_artifacts}/ — *prd*.md, *architecture*.md, ux-designs/, epics.md&lt;br&gt;• {output_folder}/brainstorming/&lt;slug&gt;/ — .memlog.md, brainstorm.html, intent.md&lt;br&gt;• {implementation_artifacts}/sprint-status.yaml + spec files&lt;br&gt;• {project-root} исходный код + git commit | {project_knowledge} (docs/)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1800" y="125" width="680" height="175" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== COLUMN 1: EPICS (x=120..580, y=490..) ==================== -->
+        <mxCell id="c1-title" value="&lt;b&gt;1. bmad-create-epics-and-stories&lt;/b&gt;&lt;br&gt;Пошаговый скилл: steps/ + templates/ + HALT-меню" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="120" y="490" width="460" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c1-trigger" value="&lt;b&gt;Вызов:&lt;/b&gt; /bmad-create-epics-and-stories  или  «create the epics and stories list»" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="120" y="565" width="460" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c1-skill" value="&lt;b&gt;src/bmm-skills/plan/bmad-create-epics-and-stories/SKILL.md&lt;/b&gt;&lt;br&gt;Читает только 1 текущий шаг (Just-In-Time Loading). Не грузит будущие шаги заранее. Обязательный HALT перед каждым меню." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="120" y="635" width="460" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c1-act" value="&lt;b&gt;On Activation&lt;/b&gt;&lt;br&gt;1. uv run {project-root}/_bmad/scripts/resolve_customization.py --skill {skill-root} --key workflow&lt;br&gt;2. Выполняет {workflow.activation_steps_prepend} и загружает persistent_facts (в т.ч. file: globs)&lt;br&gt;3. uv run {project-root}/_bmad/scripts/resolve_config.py → приветствие и пути&lt;br&gt;4. Выполняет {workflow.activation_steps_append}" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="120" y="730" width="460" height="115" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c1-s1" value="&lt;b&gt;./steps/step-01-validate-prerequisites.md&lt;/b&gt;&lt;br&gt;Ищет и проверяет PRD, Architecture и UX в {planning_artifacts}.&lt;br&gt;Создаёт {planning_artifacts}/epics.md из ./templates/epics-template.md,&lt;br&gt;записывает inputDocuments[] и stepsCompleted[] в frontmatter. HALT [C]." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="120" y="870" width="460" height="95" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c1-s2" value="&lt;b&gt;./steps/step-02-design-epics.md → ./steps/step-03-create-stories.md&lt;/b&gt;&lt;br&gt;Последовательно (append-only) формирует эпики и user stories с AC&lt;br&gt;в {planning_artifacts}/epics.md. Обновляет stepsCompleted[]. HALT [C]." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="120" y="990" width="460" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c1-s4" value="&lt;b&gt;./steps/step-04-final-validation.md&lt;/b&gt;&lt;br&gt;Проверяет 100% покрытие FR, отсутствие forward-зависимостей и file churn.&lt;br&gt;При успехе и выборе [C] меняет status: draft → final в epics.md." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1105" width="460" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c1-end" value="&lt;b&gt;Финал&lt;/b&gt;&lt;br&gt;Вызывает другой скилл: Invoke the &lt;code&gt;bmad-help&lt;/code&gt; skill (подскажет следующий этап).&lt;br&gt;Запускает resolve_customization.py --key workflow.on_complete и исполняет хук." style="rounded=1;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1210" width="460" height="85" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-c1-1" edge="1" parent="1" source="c1-trigger" target="c1-skill" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#6c8ebf;" />
+        <mxCell id="e-c1-2" edge="1" parent="1" source="c1-skill" target="c1-act" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#6c8ebf;" />
+        <mxCell id="e-c1-3" edge="1" parent="1" source="c1-act" target="c1-s1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#6c8ebf;" />
+        <mxCell id="e-c1-4" edge="1" parent="1" source="c1-s1" target="c1-s2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#6c8ebf;" />
+        <mxCell id="e-c1-5" edge="1" parent="1" source="c1-s2" target="c1-s4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#6c8ebf;" />
+        <mxCell id="e-c1-6" edge="1" parent="1" source="c1-s4" target="c1-end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#6c8ebf;" />
+
+        <!-- ==================== COLUMN 2: BRAINSTORMING (x=760..1220, y=490..) ==================== -->
+        <mxCell id="c2-title" value="&lt;b&gt;2. bmad-brainstorming&lt;/b&gt;&lt;br&gt;Скилл с scripts/ + assets/*.csv + references/ + memlog" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="760" y="490" width="460" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c2-trigger" value="&lt;b&gt;Вызов:&lt;/b&gt; /bmad-brainstorming  или  «help me brainstorm»" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="760" y="565" width="460" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c2-skill" value="&lt;b&gt;src/core-skills/bmad-brainstorming/SKILL.md&lt;/b&gt;&lt;br&gt;On Activation: resolve_customization.py (--key workflow), persistent_facts,&lt;br&gt;resolve_config.py (--key core), затем проверяет режим (interactive / headless)." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="760" y="635" width="460" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c2-resume" value="&lt;b&gt;Resume-проверка незавершённых сессий&lt;/b&gt;&lt;br&gt;Делает Glob {workflow.output_dir}/*/.memlog.md и читает frontmatter.&lt;br&gt;Если есть сессия со status != complete → грузит ./references/resume.md.&lt;br&gt;Иначе спрашивает тему/цель и биндит {doc_workspace}." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="760" y="730" width="460" height="115" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c2-assets" value="&lt;b&gt;./assets/ + ./scripts/brain.py&lt;/b&gt;&lt;br&gt;Читает ./assets/brain-methods.csv и ./assets/brain-icons.json.&lt;br&gt;Запускает uv run {skill-root}/scripts/brain.py → генерит ./assets/brain-selector.html.&lt;br&gt;Пользователь выбирает техники в браузере и вставляет промпт." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="760" y="870" width="460" height="95" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c2-mem" value="&lt;b&gt;{project-root}/_bmad/scripts/memlog.py&lt;/b&gt;&lt;br&gt;init --workspace {doc_workspace} --field topic/goal/mode.&lt;br&gt;В ходе диалога пишет каждую идею/инсайт/решение: append --type ...&lt;br&gt;Файл: {output_folder}/brainstorming/&lt;slug&gt;/.memlog.md." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="760" y="990" width="460" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c2-refs" value="&lt;b&gt;./references/ (подгружаются по ситуации)&lt;/b&gt;&lt;br&gt;mode-facilitator.md / mode-partner.md / mode-autonomous.md.&lt;br&gt;Когда идеи исчерпаны → ./references/converge.md → ./references/finalize.md." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1105" width="460" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c2-end" value="&lt;b&gt;Финал (./references/finalize.md)&lt;/b&gt;&lt;br&gt;Субагенты читают .memlog.md и создают brainstorm.html + brainstorm-intent.md.&lt;br&gt;memlog.py set status=complete | external_handoffs | Invoke bmad-help | опц. bmad-customize / bmad-spec." style="rounded=1;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1210" width="460" height="85" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-c2-1" edge="1" parent="1" source="c2-trigger" target="c2-skill" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#82b366;" />
+        <mxCell id="e-c2-2" edge="1" parent="1" source="c2-skill" target="c2-resume" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#82b366;" />
+        <mxCell id="e-c2-3" edge="1" parent="1" source="c2-resume" target="c2-assets" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#82b366;" />
+        <mxCell id="e-c2-4" edge="1" parent="1" source="c2-assets" target="c2-mem" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#82b366;" />
+        <mxCell id="e-c2-5" edge="1" parent="1" source="c2-mem" target="c2-refs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#82b366;" />
+        <mxCell id="e-c2-6" edge="1" parent="1" source="c2-refs" target="c2-end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#82b366;" />
+
+        <!-- ==================== COLUMN 3: BUILD (x=1400..1860, y=490..) ==================== -->
+        <mxCell id="c3-title" value="&lt;b&gt;3. bmad-build&lt;/b&gt;&lt;br&gt;Rendered-скилл: render_skill.py + плоские step-NN.md" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="490" width="460" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c3-trigger" value="&lt;b&gt;Вызов:&lt;/b&gt; /bmad-build  или  делегирование фичи / story / бага" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="565" width="460" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c3-skill" value="&lt;b&gt;src/bmm-skills/ship/bmad-build/SKILL.md&lt;/b&gt;&lt;br&gt;Минимальный entrypoint: запускает uv run --no-cache {project-root}/_bmad/scripts/render_skill.py.&lt;br&gt;При ошибке HALT — исходные step-файлы напрямую читать запрещено." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#ffffff;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="635" width="460" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c3-render" value="&lt;b&gt;_bmad/scripts/render_skill.py (compile-time сборка)&lt;/b&gt;&lt;br&gt;Собирает все .md скилла (кроме SKILL.md), подставляет {{config.key}}, {{.key}},&lt;br&gt;{workflow.key} и разворачивает [[bmad-snapshot:file.md]].&lt;br&gt;Печатает абсолютный путь к compiled ./workflow.md, откуда агент стартует." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="730" width="460" height="115" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c3-steps" value="&lt;b&gt;Плоские шаги в корне скилла (из снапшота)&lt;/b&gt;&lt;br&gt;./step-01-clarify-and-route.md → ./step-02-plan.md (spec-template.md)&lt;br&gt;→ ./step-03-implement.md (пишет код и тесты)&lt;br&gt;→ ./step-04-review.md + ./review-prompts/* + ./references/claims-check.md" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#ffffff;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="870" width="460" height="95" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c3-s5" value="&lt;b&gt;./step-05-present.md&lt;/b&gt;&lt;br&gt;Ставит status: done в {spec_file}. Если есть story_key — вызывает&lt;br&gt;[[bmad-snapshot:sync-sprint-status.md]] → обновляет {implementation_artifacts}/sprint-status.yaml.&lt;br&gt;Делает локальный conventional git commit (без push)." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="990" width="460" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c3-end" value="&lt;b&gt;Финал&lt;/b&gt;&lt;br&gt;Предлагает создать PR / Invoke the &lt;code&gt;bmad-walkthrough&lt;/code&gt; skill / ещё изменение.&lt;br&gt;Выполняет {workflow.on_complete}." style="rounded=1;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="1105" width="460" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-c3-1" edge="1" parent="1" source="c3-trigger" target="c3-skill" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#d79b00;" />
+        <mxCell id="e-c3-2" edge="1" parent="1" source="c3-skill" target="c3-render" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#d79b00;" />
+        <mxCell id="e-c3-3" edge="1" parent="1" source="c3-render" target="c3-steps" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#d79b00;" />
+        <mxCell id="e-c3-4" edge="1" parent="1" source="c3-steps" target="c3-s5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#d79b00;" />
+        <mxCell id="e-c3-5" edge="1" parent="1" source="c3-s5" target="c3-end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#d79b00;" />
+
+        <!-- ==================== COLUMN 4: AGENT ARCHITECT (x=2040..2500, y=490..) ==================== -->
+        <mxCell id="c4-title" value="&lt;b&gt;4. bmad-agent-architect (Winston)&lt;/b&gt;&lt;br&gt;Агент-персона: [agent] + меню + делегирование скиллов" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="2040" y="490" width="460" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c4-trigger" value="&lt;b&gt;Вызов:&lt;/b&gt; /bmad-agent-architect  или  «talk to Winston» / «request architect»" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="2040" y="565" width="460" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c4-skill" value="&lt;b&gt;src/bmm-skills/agents/bmad-agent-architect/SKILL.md&lt;/b&gt;&lt;br&gt;Устанавливается как обычный скилл в .agents/skills/bmad-agent-architect/.&lt;br&gt;Включает режим постоянной персоны до явного выхода пользователя." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#ffffff;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="2040" y="635" width="460" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c4-act" value="&lt;b&gt;Steps 1–4: Персона и контекст&lt;/b&gt;&lt;br&gt;1. resolve_customization.py --skill {skill-root} --key agent&lt;br&gt;   (customize.toml + _bmad/custom/bmad-agent-architect.toml + .user.toml)&lt;br&gt;2. Выполняет {agent.activation_steps_prepend}&lt;br&gt;3. Принимает персону Winston (role, identity, communication_style, principles)&lt;br&gt;4. Загружает {agent.persistent_facts} (строки + file: globs)" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="2040" y="730" width="460" height="115" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c4-cfg" value="&lt;b&gt;Steps 5–7: Конфиг и приветствие&lt;/b&gt;&lt;br&gt;5. resolve_config.py → {user_name}, {communication_language}, {planning_artifacts}, {project_knowledge}&lt;br&gt;6. Приветствует от имени Winston в {communication_language}, ставит префикс 🏗️&lt;br&gt;7. Выполняет {agent.activation_steps_append}" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="2040" y="870" width="460" height="95" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c4-menu" value="&lt;b&gt;Step 8: Dispatch или Меню [[agent.menu]]&lt;/b&gt;&lt;br&gt;Если задача уже названа в запросе — сразу запускает нужный пункт.&lt;br&gt;Иначе выводит таблицу и STOP &amp; WAIT:&lt;br&gt;• [CA] → Invoke &lt;code&gt;bmad-architecture&lt;/code&gt;  |  • [IR] → Invoke &lt;code&gt;bmad-sprint-planning&lt;/code&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#ffffff;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="2040" y="990" width="460" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="c4-end" value="&lt;b&gt;Работа в образе&lt;/b&gt;&lt;br&gt;Вызванный скилл (bmad-architecture / bmad-sprint-planning) исполняется внутри персоны:&lt;br&gt;🏗️ + communication_style + principles + persistent_facts сохраняются на все ходы." style="rounded=1;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="2040" y="1105" width="460" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-c4-1" edge="1" parent="1" source="c4-trigger" target="c4-skill" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#9673a6;" />
+        <mxCell id="e-c4-2" edge="1" parent="1" source="c4-skill" target="c4-act" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#9673a6;" />
+        <mxCell id="e-c4-3" edge="1" parent="1" source="c4-act" target="c4-cfg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#9673a6;" />
+        <mxCell id="e-c4-4" edge="1" parent="1" source="c4-cfg" target="c4-menu" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#9673a6;" />
+        <mxCell id="e-c4-5" edge="1" parent="1" source="c4-menu" target="c4-end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;strokeColor=#9673a6;" />
+
+        <!-- ==================== 3 HORIZONTAL BUSES & TRUNKS TO MEMORY LAYER ==================== -->
+        <!-- Bus 1: Configs (#7B1FA2) at y=360, x=60..1940 -->
+        <mxCell id="bus-cfg" value="" style="line;strokeWidth=4;strokeColor=#7B1FA2;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="355" width="1880" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="bus-cfg-trunk" value="Шина конфигов" edge="1" parent="1" target="mem-config" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=3;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;html=1;fontSize=11;entryX=0.5;entryY=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="360" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Bus 2: Session Memory (#1B8A3D) at y=400, x=655..1985 -->
+        <mxCell id="bus-mem" value="" style="line;strokeWidth=4;strokeColor=#1B8A3D;html=1;" vertex="1" parent="1">
+          <mxGeometry x="655" y="395" width="1330" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="bus-mem-trunk" value="Шина памяти сессии" edge="1" parent="1" target="mem-session" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=3;strokeColor=#1B8A3D;fontColor=#1B8A3D;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1B8A3D;html=1;fontSize=11;entryX=0.5;entryY=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1300" y="400" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Bus 3: Artifacts & Code (#1565C0) at y=440, x=615..2560 -->
+        <mxCell id="bus-art" value="" style="line;strokeWidth=4;strokeColor=#1565C0;html=1;" vertex="1" parent="1">
+          <mxGeometry x="615" y="435" width="1945" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="bus-art-trunk" value="Шина артефактов и кода" edge="1" parent="1" target="mem-art" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=3;strokeColor=#1565C0;fontColor=#1565C0;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1565C0;html=1;fontSize=11;entryX=0.5;entryY=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2140" y="440" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ==================== CROSS ARROWS TO BUSES ==================== -->
+        <!-- c1-act -> Bus 1 (x=60, y=360) -->
+        <mxCell id="x-c1-cfg" value="читает конфиг" edge="1" parent="1" source="c1-act" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=0;exitY=0.5;">
+          <mxGeometry relative="1" x="-0.15" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="787" />
+            </Array>
+            <mxPoint x="60" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c1-s1 -> Bus 3 (x=615, y=440) -->
+        <mxCell id="x-c1-art-r" value="проверяет PRD/Arch/UX" edge="1" parent="1" source="c1-s1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeWidth=2.5;strokeColor=#1565C0;fontColor=#1565C0;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1565C0;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=1;exitY=0.3;">
+          <mxGeometry relative="1" x="-0.4" as="geometry">
+            <Array as="points">
+              <mxPoint x="615" y="898" />
+            </Array>
+            <mxPoint x="615" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c1-s1 -> Bus 2 (x=655, y=400) -->
+        <mxCell id="x-c1-fm" value="stepsCompleted / status" edge="1" parent="1" source="c1-s1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=2.5;strokeColor=#1B8A3D;fontColor=#1B8A3D;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1B8A3D;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=1;exitY=0.7;">
+          <mxGeometry relative="1" x="0.15" as="geometry">
+            <Array as="points">
+              <mxPoint x="655" y="936" />
+            </Array>
+            <mxPoint x="655" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c1-s4 -> Bus 3 (x=695, y=440) -->
+        <mxCell id="x-c1-art-w" value="пишет epics.md" edge="1" parent="1" source="c1-s4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=2.5;strokeColor=#1565C0;fontColor=#1565C0;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1565C0;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=1;exitY=0.5;">
+          <mxGeometry relative="1" x="-0.65" as="geometry">
+            <Array as="points">
+              <mxPoint x="695" y="1145" />
+            </Array>
+            <mxPoint x="695" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c2-skill -> Bus 1 (x=735, y=360) -->
+        <mxCell id="x-c2-cfg" value="читает конфиг" edge="1" parent="1" source="c2-skill" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=0;exitY=0.5;">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <Array as="points">
+              <mxPoint x="735" y="670" />
+            </Array>
+            <mxPoint x="735" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c2-mem -> Bus 2 (x=1255, y=400) -->
+        <mxCell id="x-c2-mem" value="пишет .memlog.md" edge="1" parent="1" source="c2-mem" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=2.5;strokeColor=#1B8A3D;fontColor=#1B8A3D;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1B8A3D;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=1;exitY=0.5;">
+          <mxGeometry relative="1" x="-0.55" as="geometry">
+            <Array as="points">
+              <mxPoint x="1255" y="1035" />
+            </Array>
+            <mxPoint x="1255" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c2-end -> Bus 3 (x=1295, y=440) -->
+        <mxCell id="x-c2-art" value="пишет html / intent" edge="1" parent="1" source="c2-end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=2.5;strokeColor=#1565C0;fontColor=#1565C0;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1565C0;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=1;exitY=0.5;">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <Array as="points">
+              <mxPoint x="1295" y="1252" />
+            </Array>
+            <mxPoint x="1295" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c3-render -> Bus 1 (x=1335, y=360) -->
+        <mxCell id="x-c3-cfg" value="bake-in конфиг" edge="1" parent="1" source="c3-render" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=0;exitY=0.3;">
+          <mxGeometry relative="1" x="0.1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1335" y="764" />
+            </Array>
+            <mxPoint x="1335" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c3-render -> Bus 2 (x=1370, y=400) -->
+        <mxCell id="x-c3-snap" value="снапшот workflow.md" edge="1" parent="1" source="c3-render" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=2.5;strokeColor=#1B8A3D;fontColor=#1B8A3D;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1B8A3D;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=0;exitY=0.7;">
+          <mxGeometry relative="1" x="-0.3" as="geometry">
+            <Array as="points">
+              <mxPoint x="1370" y="810" />
+            </Array>
+            <mxPoint x="1370" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c3-s5 -> Bus 3 (x=1895, y=440) -->
+        <mxCell id="x-c3-art" value="код + sprint-status + git" edge="1" parent="1" source="c3-s5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=2.5;strokeColor=#1565C0;fontColor=#1565C0;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1565C0;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=1;exitY=0.5;">
+          <mxGeometry relative="1" x="-0.5" as="geometry">
+            <Array as="points">
+              <mxPoint x="1895" y="1035" />
+            </Array>
+            <mxPoint x="1895" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c4-act -> Bus 1 (x=1940, y=360) -->
+        <mxCell id="x-c4-cfg" value="agent customize + config" edge="1" parent="1" source="c4-act" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=0;exitY=0.5;">
+          <mxGeometry relative="1" x="0.1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1940" y="787" />
+            </Array>
+            <mxPoint x="1940" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c4-end -> Bus 2 (x=1985, y=400) -->
+        <mxCell id="x-c4-pers" value="держит персону в чате" edge="1" parent="1" source="c4-end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeWidth=2.5;strokeColor=#1B8A3D;fontColor=#1B8A3D;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1B8A3D;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=0;exitY=0.5;">
+          <mxGeometry relative="1" x="-0.6" as="geometry">
+            <Array as="points">
+              <mxPoint x="1985" y="1145" />
+            </Array>
+            <mxPoint x="1985" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- c4-menu -> Bus 3 (x=2560, y=440) -->
+        <mxCell id="x-c4-art" value="bmad-architecture / sprint-planning" edge="1" parent="1" source="c4-menu" style="edgeStyle=orthogonalEdgeStyle;rounded=0;dashed=1;strokeWidth=2.5;strokeColor=#1565C0;fontColor=#1565C0;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1565C0;endArrow=oval;endFill=1;endSize=5;html=1;fontSize=10;exitX=1;exitY=0.5;">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <Array as="points">
+              <mxPoint x="2560" y="1035" />
+            </Array>
+            <mxPoint x="2560" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

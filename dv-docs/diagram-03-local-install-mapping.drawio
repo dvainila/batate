@@ -1,0 +1,277 @@
+<mxfile host="Electron">
+  <diagram name="Local Install Mapping (Two Trees)" id="local-install-mapping-03">
+    <mxGraphModel dx="3209" dy="1702" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="2200" pageHeight="1650" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=15;" value="&lt;b&gt;Локальная установка BMAD из репозитория в пустой проект (без сети)&lt;/b&gt; — два дерева и 3 этапа переноса/сборки" vertex="1">
+          <mxGeometry height="30" width="1200" x="60" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Легенда:&lt;/b&gt;   &lt;font color=&quot;#9673a6&quot;&gt;━━&lt;/font&gt; слияние / генерация конфигов    |    &lt;font color=&quot;#6c8ebf&quot;&gt;━━&lt;/font&gt; копирование / плоский деплой скиллов    |    &lt;font color=&quot;#82b366&quot;&gt;━━&lt;/font&gt; генерация индексов и манифестов    |    &lt;font color=&quot;#888888&quot;&gt;- - -&lt;/font&gt; пропускается при --no-shims" vertex="1">
+          <mxGeometry height="24" width="1350" x="60" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="band-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#faf7fc;strokeColor=#d8cce6;strokeWidth=1;fontSize=12;" value="&lt;b&gt;ЭТАП 1. Запуск CLI, сбор ответов и генерация конфигов&lt;/b&gt; — &lt;code&gt;Installer.install() → ModuleManager.collectAllConfigurations() → ManifestGenerator.writeCentralConfig()&lt;/code&gt;" vertex="1">
+          <mxGeometry height="405" width="2120" x="40" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="band-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#f5f8fd;strokeColor=#c9daf8;strokeWidth=1;fontSize=12;" value="&lt;b&gt;ЭТАП 2. Копирование runtime-скриптов и плоский деплой скиллов/агентов в IDE&lt;/b&gt; — &lt;code&gt;_installSharedScripts() → _installOfficialModules() → _setupIdes() → _cleanupSkillDirs()&lt;/code&gt;" vertex="1">
+          <mxGeometry height="535" width="2120" x="40" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="band-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#f5faf5;strokeColor=#c8e0c2;strokeWidth=1;fontSize=12;" value="&lt;b&gt;ЭТАП 3. Слияние help-таблиц и генерация манифестов (_bmad/_config/)&lt;/b&gt; — &lt;code&gt;ManifestGenerator.generateManifests() + Installer.mergeModuleHelpCatalogs()&lt;/code&gt;" vertex="1">
+          <mxGeometry height="430" width="2120" x="40" y="1135" as="geometry" />
+        </mxCell>
+        <mxCell id="left-root" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;fontSize=13;" value="&lt;b&gt;📁 BMAD-METHOD-6.12.4/&lt;/b&gt; (оригинальный репозиторий)" vertex="1">
+          <mxGeometry height="42" width="840" x="60" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="right-root" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=13;" value="&lt;b&gt;📁 my-project/&lt;/b&gt; (пустой проект после установки, по образцу clean_bmad_v6 без bmb)" vertex="1">
+          <mxGeometry height="42" width="860" x="1280" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="divider-v" parent="1" style="line;direction=south;strokeWidth=3;dashed=1;strokeColor=#666666;html=1;" value="" vertex="1">
+          <mxGeometry height="1480" width="10" x="1085" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="cli-badge" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;spacingLeft=10;fillColor=#ffffff;strokeColor=#333333;strokeWidth=2;fontSize=11;" value="&lt;b&gt;Команда установки (100% offline):&lt;/b&gt;&lt;br&gt;&lt;code&gt;node tools/installer/bmad-cli.js install \&lt;br&gt;  --directory /path/to/my-project \&lt;br&gt;  --modules bmm --tools cursor \&lt;br&gt;  --no-shims --yes&lt;/code&gt;" vertex="1">
+          <mxGeometry height="85" width="310" x="935" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="l-tools" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;├── tools/installer/&lt;/b&gt;&lt;br&gt;│   ├── &lt;b&gt;bmad-cli.js&lt;/b&gt; + core/installer.js (Installer) + manifest-generator.js&lt;br&gt;│   ├── &lt;b&gt;project-root.js&lt;/b&gt; (берёт src/ с диска) + core/shim-policy.js&lt;br&gt;│   └── &lt;b&gt;ide/platform-codes.yaml&lt;/b&gt; + ide/_config-driven.js (cursor → .agents/skills)" vertex="1">
+          <mxGeometry height="90" width="490" x="80" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="l-src-s1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;├── src/&lt;/b&gt; (конфиги модулей)" vertex="1">
+          <mxGeometry height="32" width="220" x="80" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="l-core-yaml" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;│   ├── core-skills/module.yaml&lt;/b&gt;&lt;br&gt;│   │   вопросы [core]: user_name, communication_language,&lt;br&gt;│   │   document_output_language, output_folder" vertex="1">
+          <mxGeometry height="68" width="440" x="110" y="352" as="geometry" />
+        </mxCell>
+        <mxCell id="l-bmm-yaml" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;│   └── bmm-skills/module.yaml&lt;/b&gt;&lt;br&gt;│       • вопросы [modules.bmm]: user_skill_level, planning_artifacts,&lt;br&gt;│         implementation_artifacts, project_knowledge&lt;br&gt;│       • секция agents: → дескрипторы [agents.*] (Mary, Winston, ...)" vertex="1">
+          <mxGeometry height="95" width="490" x="110" y="435" as="geometry" />
+        </mxCell>
+        <mxCell id="r-bmad-root" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;├── _bmad/&lt;/b&gt; (служебная папка BMAD в проекте)" vertex="1">
+          <mxGeometry height="32" width="380" x="1300" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="r-config-toml" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;│   ├── config.toml&lt;/b&gt; (read-only для юзера, пересобирается при update)&lt;br&gt;│   │   содержит: [core], [modules.bmm], [agents.bmad-agent-*]" vertex="1">
+          <mxGeometry height="58" width="490" x="1330" y="242" as="geometry" />
+        </mxCell>
+        <mxCell id="r-config-user" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;│   ├── config.user.toml&lt;/b&gt; (личные ответы, scope: user, .gitignore)" vertex="1">
+          <mxGeometry height="36" width="490" x="1330" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="r-mod-yamls" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;│   ├── core/config.yaml&lt;/b&gt;  и  &lt;b&gt;bmm/config.yaml&lt;/b&gt;&lt;br&gt;│   │   YAML-проекции ответов каждого модуля (генерирует установщик)" vertex="1">
+          <mxGeometry height="55" width="490" x="1330" y="362" as="geometry" />
+        </mxCell>
+        <mxCell id="r-custom-dir" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;│   └── custom/&lt;/b&gt; (создаётся при первой установке, НЕ затирается при update)&lt;br&gt;│       ├── config.toml (team overrides) + config.user.toml (.gitignore)" vertex="1">
+          <mxGeometry height="58" width="520" x="1330" y="432" as="geometry" />
+        </mxCell>
+        <mxCell id="l-scripts" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;│   ├── scripts/&lt;/b&gt; (Python 3.11+ runtime)&lt;br&gt;│   │   resolve_config.py, resolve_customization.py,&lt;br&gt;│   │   render_skill.py, memlog.py, config_utils.py" vertex="1">
+          <mxGeometry height="72" width="460" x="110" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="l-core-skills" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;│   ├── core-skills/&lt;/b&gt; (скиллы ядра)&lt;br&gt;│   │   bmad-help/, bmad-customize/, bmad-party-mode/,&lt;br&gt;│   │   bmad-brainstorming/, bmad-review/, bmad-deep-recon/, ..." vertex="1">
+          <mxGeometry height="72" width="460" x="110" y="710" as="geometry" />
+        </mxCell>
+        <mxCell id="l-bmm-agents" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;│   └── bmm-skills/agents/&lt;/b&gt; (5 агентов)&lt;br&gt;│       bmad-agent-analyst/, bmad-agent-architect/,&lt;br&gt;│       bmad-agent-dev/, bmad-agent-pm/, bmad-agent-ux-designer/" vertex="1">
+          <mxGeometry height="72" width="460" x="110" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="l-bmm-workflows" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;│   └── bmm-skills/plan/  +  ship/&lt;/b&gt; (воркфлоу-скиллы)&lt;br&gt;│       plan: bmad-prd/, bmad-architecture/, bmad-create-epics-and-stories/, ...&lt;br&gt;│       ship: bmad-build/, bmad-code-review/, bmad-sprint-planning/, ..." vertex="1">
+          <mxGeometry height="75" width="520" x="110" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="l-shims" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#f5f5f5;strokeColor=#999999;dashed=1;fontSize=11;" value="&lt;b&gt;│   └── */v6-shims/&lt;/b&gt; (deprecated, metadata.lifecycle: shim)&lt;br&gt;│       bmad-create-prd/, bmad-dev-story/, bmad-quick-dev/, ..." vertex="1">
+          <mxGeometry height="58" width="460" x="110" y="985" as="geometry" />
+        </mxCell>
+        <mxCell id="r-scripts" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;│   ├── scripts/&lt;/b&gt; (1:1 копия Python-скриптов)&lt;br&gt;│   │   resolve_config.py, resolve_customization.py, render_skill.py, memlog.py, config_utils.py" vertex="1">
+          <mxGeometry height="58" width="570" x="1330" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="r-render" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;│   └── render/&lt;/b&gt; (.gitignore) — создаётся в _installSharedScripts() для снапшотов bmad-build" vertex="1">
+          <mxGeometry height="36" width="590" x="1330" y="692" as="geometry" />
+        </mxCell>
+        <mxCell id="r-agents-skills" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;├── .agents/skills/&lt;/b&gt; (целевая папка для Cursor по platform-codes.yaml)&lt;br&gt;│   &lt;i&gt;Плоский список — без вложенных plan/, ship/, agents/:&lt;/i&gt;&lt;br&gt;│   ├── bmad-help/, bmad-customize/, bmad-party-mode/, bmad-brainstorming/, ...&lt;br&gt;│   ├── bmad-agent-analyst/, bmad-agent-architect/, bmad-agent-dev/, bmad-agent-pm/, ...&lt;br&gt;│   ├── bmad-prd/, bmad-architecture/, bmad-create-epics-and-stories/, ...&lt;br&gt;│   └── bmad-build/, bmad-code-review/, bmad-sprint-planning/, ...&lt;br&gt;│   &lt;i&gt;(после деплоя _cleanupSkillDirs() удаляет копии из _bmad/; шимы не ставятся при --no-shims)&lt;/i&gt;" vertex="1">
+          <mxGeometry height="145" width="660" x="1300" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="r-output" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;└── _bmad-output/&lt;/b&gt; (создаётся через ModuleManager.createModuleDirectories())&lt;br&gt;    └── planning-artifacts/, implementation-artifacts/, brainstorming/" vertex="1">
+          <mxGeometry height="58" width="560" x="1300" y="918" as="geometry" />
+        </mxCell>
+        <mxCell id="l-core-help" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;│   ├── core-skills/module-help.csv&lt;/b&gt;&lt;br&gt;│   │   каталог скиллов модуля core (menu-code, phase, outputs)" vertex="1">
+          <mxGeometry height="58" width="460" x="110" y="1180" as="geometry" />
+        </mxCell>
+        <mxCell id="l-bmm-help" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;│   └── bmm-skills/module-help.csv&lt;/b&gt;&lt;br&gt;│       каталог скиллов и фаз модуля bmm (Analysis → Implementation)" vertex="1">
+          <mxGeometry height="58" width="460" x="110" y="1255" as="geometry" />
+        </mxCell>
+        <mxCell id="l-installer-state" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;└── Метаданные установщика в памяти&lt;/b&gt; (версия 6.12.4, список модулей,&lt;br&gt;    IDE [cursor], список скопированных скиллов и SHA-хеши файлов)" vertex="1">
+          <mxGeometry height="58" width="490" x="80" y="1335" as="geometry" />
+        </mxCell>
+        <mxCell id="r-mod-help" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=5;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;│   ├── core/module-help.csv&lt;/b&gt;  и  &lt;b&gt;bmm/module-help.csv&lt;/b&gt;&lt;br&gt;│   │   локальные копии таблиц помощи по каждому модулю" vertex="1">
+          <mxGeometry height="58" width="520" x="1330" y="1180" as="geometry" />
+        </mxCell>
+        <mxCell id="r-config-dir" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;│   └── _config/&lt;/b&gt; (служебные индексы и манифесты)" vertex="1">
+          <mxGeometry height="32" width="400" x="1330" y="1252" as="geometry" />
+        </mxCell>
+        <mxCell id="r-bmad-help-csv" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;│       ├── bmad-help.csv&lt;/b&gt; — объединённый каталог всех модулей (читает /bmad-help)" vertex="1">
+          <mxGeometry height="40" width="560" x="1360" y="1296" as="geometry" />
+        </mxCell>
+        <mxCell id="r-manifest-yaml" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;│       ├── manifest.yaml&lt;/b&gt; — version: 6.12.4, modules: [core, bmm], ides: [cursor], installShims: false" vertex="1">
+          <mxGeometry height="40" width="600" x="1360" y="1348" as="geometry" />
+        </mxCell>
+        <mxCell id="r-skill-manifest" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;│       ├── skill-manifest.csv&lt;/b&gt; — индекс всех установленных скиллов и их путей" vertex="1">
+          <mxGeometry height="40" width="560" x="1360" y="1400" as="geometry" />
+        </mxCell>
+        <mxCell id="r-files-manifest" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=8;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;│       └── files-manifest.csv&lt;/b&gt; — список и хеши всех установленных файлов (для quick-update)" vertex="1">
+          <mxGeometry height="40" width="580" x="1360" y="1452" as="geometry" />
+        </mxCell>
+        <mxCell id="t-l1" edge="1" parent="1" source="left-root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;endArrow=none;exitX=0.05;exitY=1;entryX=0;entryY=0.5;" target="l-tools">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t-l2" edge="1" parent="1" source="l-src-s1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;endArrow=none;exitX=0.1;exitY=1;entryX=0;entryY=0.5;" target="l-core-yaml">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="95" y="386" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t-l3" edge="1" parent="1" source="l-src-s1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;endArrow=none;exitX=0.1;exitY=1;entryX=0;entryY=0.5;" target="l-bmm-yaml">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="95" y="482" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t-r1" edge="1" parent="1" source="right-root" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#999999;endArrow=none;exitX=0.04;exitY=1;entryX=0;entryY=0.5;" target="r-bmad-root">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1285" y="211" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m1-core-toml" edge="1" parent="1" source="l-core-yaml" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#9673a6;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="r-config-toml" value="collectModuleConfig() + writeCentralConfig()">
+          <mxGeometry relative="1" x="0.0838" y="21" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="860" y="386" />
+              <mxPoint x="860" y="271" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m1-bmm-toml" edge="1" parent="1" source="l-bmm-yaml" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#9673a6;strokeWidth=2;exitX=1;exitY=0.4;entryX=0;entryY=0.8;" target="r-config-toml" value="collectAgentsFromModuleYaml() + writeCentralConfig()">
+          <mxGeometry relative="1" x="0.2565" y="8" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="880" y="473" />
+              <mxPoint x="880" y="288" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m1-user-toml" edge="1" parent="1" source="l-core-yaml" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#9673a6;strokeWidth=2;exitX=1;exitY=0.8;entryX=0;entryY=0.5;" target="r-config-user" value="writeCentralConfig() [scope: user]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="406" />
+              <mxPoint x="900" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m1-mod-yamls" edge="1" parent="1" source="l-bmm-yaml" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#9673a6;strokeWidth=2;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" target="r-mod-yamls" value="Installer.generateModuleConfigs()">
+          <mxGeometry relative="1" x="0.2206" y="19" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="915" y="506" />
+              <mxPoint x="915" y="390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m1-cli-custom" edge="1" parent="1" source="cli-badge" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="r-custom-dir" value="_installSharedScripts() + ensureCustomConfigStubs()">
+          <mxGeometry relative="1" x="0.4297" y="21" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1090" y="461" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2-scripts" edge="1" parent="1" source="l-scripts" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6c8ebf;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="r-scripts" value="Installer._installSharedScripts() [копия 1:1]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="656" />
+              <mxPoint x="860" y="649" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2-core-skills" edge="1" parent="1" source="l-core-skills" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6c8ebf;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.25;" target="r-agents-skills" value="ModuleManager.install() → ConfigDrivenIdeSetup.installToTarget()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="746" />
+              <mxPoint x="880" y="786" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2-bmm-agents" edge="1" parent="1" source="l-bmm-agents" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6c8ebf;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="r-agents-skills" value="IdeManager.setupBatch() → _cleanupSkillDirs()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="836" />
+              <mxPoint x="900" y="822" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2-bmm-wf" edge="1" parent="1" source="l-bmm-workflows" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6c8ebf;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.78;" target="r-agents-skills" value="installVerbatimSkills() [убирает plan/ и ship/]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="920" y="928" />
+              <mxPoint x="920" y="863" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2-shims-skip" edge="1" parent="1" source="l-shims" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#888888;strokeWidth=2;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.92;" target="r-agents-skills" value="resolveShimPolicy() → пропущено (--no-shims)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="945" y="1014" />
+              <mxPoint x="945" y="883" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3-mod-help" edge="1" parent="1" source="l-core-help" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#82b366;strokeWidth=2;exitX=1;exitY=0.4;entryX=0;entryY=0.5;" target="r-mod-help" value="ModuleManager.install() [копия по модулям]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="1203" />
+              <mxPoint x="860" y="1209" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3-merge-help-1" edge="1" parent="1" source="l-core-help" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#82b366;strokeWidth=2;exitX=1;exitY=0.75;entryX=0;entryY=0.4;" target="r-bmad-help-csv" value="mergeModuleHelpCatalogs()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="1223" />
+              <mxPoint x="880" y="1312" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3-merge-help-2" edge="1" parent="1" source="l-bmm-help" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#82b366;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.7;" target="r-bmad-help-csv" value="Installer.mergeModuleHelpCatalogs()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="1284" />
+              <mxPoint x="900" y="1324" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3-manifest-1" edge="1" parent="1" source="l-installer-state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#82b366;strokeWidth=2;exitX=1;exitY=0.35;entryX=0;entryY=0.5;" target="r-manifest-yaml" value="ManifestGenerator.writeMainManifest()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="920" y="1355" />
+              <mxPoint x="920" y="1368" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3-manifest-2" edge="1" parent="1" source="l-installer-state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#82b366;strokeWidth=2;exitX=1;exitY=0.6;entryX=0;entryY=0.5;" target="r-skill-manifest" value="collectSkills() + writeSkillManifest()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="945" y="1370" />
+              <mxPoint x="945" y="1420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3-manifest-3" edge="1" parent="1" source="l-installer-state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#82b366;strokeWidth=2;exitX=1;exitY=0.85;entryX=0;entryY=0.5;" target="r-files-manifest" value="calculateFileHash() + writeFilesManifest()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="965" y="1384" />
+              <mxPoint x="965" y="1472" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

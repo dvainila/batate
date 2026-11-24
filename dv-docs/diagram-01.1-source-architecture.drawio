@@ -1,0 +1,228 @@
+<mxfile host="Electron">
+  <diagram name="BMAD source architecture" id="source-architecture-01-1">
+    <mxGraphModel dx="3037" dy="1827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="2640" pageHeight="2020" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=16;" value="&lt;b&gt;Архитектура BMAD-METHOD до установки&lt;/b&gt; — что где лежит, YAML / CSV / TOML, кастомизация и хранилища" vertex="1">
+          <mxGeometry height="30" width="2100" x="40" y="14" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;" value="&lt;b&gt;Легенда:&lt;/b&gt;   &lt;font color=&quot;#7B1FA2&quot;&gt;&lt;b&gt;━━ конфиги / YAML / TOML&lt;/b&gt;&lt;/font&gt;    |    &lt;font color=&quot;#1565C0&quot;&gt;&lt;b&gt;━━ каталоги CSV / артефакты / скрипты&lt;/b&gt;&lt;/font&gt;    |    &lt;font color=&quot;#1B8A3D&quot;&gt;&lt;b&gt;━━ память сессии&lt;/b&gt;&lt;/font&gt;    |    сплошная = пишет / мерджит / создаёт    |    пунктир = читает / вызывает    |    &lt;code&gt;[в репо]&lt;/code&gt; vs &lt;code&gt;[после install]&lt;/code&gt;" vertex="1">
+          <mxGeometry height="24" width="2460" x="40" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="band1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#faf7fc;strokeColor=#d8cce6;strokeWidth=1;fontSize=12;" value="" vertex="1">
+          <mxGeometry height="515" width="2540" x="40" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacingLeft=12;fillColor=#ffffff;strokeColor=#9673a6;strokeWidth=1.5;fontSize=12;" value="&lt;b&gt;УРОВЕНЬ 1. Карта BMAD в покое (BMAD-METHOD-6.12.4/)&lt;/b&gt;  —  &lt;b&gt;За что отвечает:&lt;/b&gt; показывает только папки репозитория, участвующие в работе BMAD.  &lt;b&gt;Что показывает:&lt;/b&gt; где лежат установщик, модули, скиллы и Python-движок и кто к кому обращается." vertex="1">
+          <mxGeometry height="54" width="2460" x="80" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-cli" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;tools/installer/bmad-cli.js&lt;/b&gt;&lt;hr&gt;Точка входа &lt;code&gt;bin.bmad&lt;/code&gt; из &lt;code&gt;package.json&lt;/code&gt;.&lt;br&gt;Разворачивает модули и &lt;code&gt;src/scripts/&lt;/code&gt; в проект,&lt;br&gt;собирает &lt;code&gt;_bmad/config.toml&lt;/code&gt;." vertex="1">
+          <mxGeometry height="105" width="460" x="100" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-modyaml-reg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;bmad-modules.yaml&lt;/b&gt; [в репо]&lt;hr&gt;Реестр внешних модулей: &lt;code&gt;bmb, cis, tea, bmad-loop, gds&lt;/code&gt;.&lt;br&gt;В &lt;code&gt;src/&lt;/code&gt; их нет — клонируются при install по URL и &lt;code&gt;module-definition&lt;/code&gt;.&lt;br&gt;Читают: &lt;code&gt;external-manager.js&lt;/code&gt;, &lt;code&gt;channel-plan.js&lt;/code&gt;." vertex="1">
+          <mxGeometry height="105" width="460" x="100" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-core" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;src/core-skills/&lt;/b&gt; (code: core) [в репо]&lt;hr&gt;• &lt;code&gt;module.yaml&lt;/code&gt; + &lt;code&gt;module-help.csv&lt;/code&gt;&lt;br&gt;• &lt;code&gt;bmad-help&lt;/code&gt;, &lt;code&gt;bmad-customize&lt;/code&gt;, &lt;code&gt;bmad-party-mode&lt;/code&gt;&lt;br&gt;• &lt;code&gt;bmad-brainstorming&lt;/code&gt;, &lt;code&gt;bmad-advanced-elicitation&lt;/code&gt;&lt;br&gt;• &lt;code&gt;bmad-review&lt;/code&gt;, &lt;code&gt;bmad-deep-recon&lt;/code&gt;, &lt;code&gt;bmad-forge-idea&lt;/code&gt;" vertex="1">
+          <mxGeometry height="260" width="460" x="720" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-bmm" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;src/bmm-skills/&lt;/b&gt; (code: bmm) [в репо]&lt;hr&gt;• &lt;code&gt;module.yaml&lt;/code&gt; + &lt;code&gt;module-help.csv&lt;/code&gt;&lt;br&gt;• &lt;code&gt;agents/&lt;/code&gt; — 5 персон (analyst, pm, ux, architect, dev)&lt;br&gt;• &lt;code&gt;plan/&lt;/code&gt; — brief, prd, ux, arch, spec, epics, sprint-planning&lt;br&gt;• &lt;code&gt;ship/&lt;/code&gt; — build, build-auto, code-review, qa, retro" vertex="1">
+          <mxGeometry height="260" width="460" x="1340" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-scripts" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;src/scripts/&lt;/b&gt; (не модуль, Python 3.11+) [в репо]&lt;hr&gt;• &lt;code&gt;resolve_config.py&lt;/code&gt;, &lt;code&gt;resolve_customization.py&lt;/code&gt;&lt;br&gt;• &lt;code&gt;config_utils.py&lt;/code&gt; (&lt;code&gt;structural_merge&lt;/code&gt;)&lt;br&gt;• &lt;code&gt;render_skill.py&lt;/code&gt;, &lt;code&gt;memlog.py&lt;/code&gt;&lt;br&gt;Скиллы вызывают через &lt;code&gt;uv run&lt;/code&gt; (после install → &lt;code&gt;_bmad/scripts/&lt;/code&gt;)." vertex="1">
+          <mxGeometry height="260" width="460" x="1960" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="e-l1-reg-cli" edge="1" parent="1" source="l1-modyaml-reg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;fontSize=10;dashed=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="l1-cli" value="внешние модули">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-l1-core-cli" edge="1" parent="1" source="l1-core" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;fontSize=10;dashed=1;exitX=0.25;exitY=0;entryX=0.72;entryY=0;" target="l1-cli" value="читает core module.yaml + help.csv">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="835" y="202" />
+              <mxPoint x="431" y="202" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-l1-bmm-cli" edge="1" parent="1" source="l1-bmm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;fontSize=10;dashed=1;exitX=0.5;exitY=0;entryX=0.35;entryY=0;" target="l1-cli" value="читает bmm module.yaml + help.csv">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1570" y="172" />
+              <mxPoint x="261" y="172" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-l1-bmm-scripts" edge="1" parent="1" source="l1-bmm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#1565C0;fontColor=#1565C0;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1565C0;fontSize=10;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="l1-scripts" value="uv run">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-l1-core-scripts" edge="1" parent="1" source="l1-core" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#1565C0;fontColor=#1565C0;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1565C0;fontSize=10;dashed=1;exitX=0.5;exitY=1;entryX=0.5;entryY=1;" target="l1-scripts" value="uv run">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="545" />
+              <mxPoint x="2190" y="545" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="div1" parent="1" style="line;strokeWidth=2;dashed=1;strokeColor=#999999;html=1;" value="" vertex="1">
+          <mxGeometry height="10" width="2540" x="40" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="band2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#f5f8fd;strokeColor=#c9daf8;strokeWidth=1;fontSize=12;" value="" vertex="1">
+          <mxGeometry height="720" width="2540" x="40" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacingLeft=12;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;fontSize=12;" value="&lt;b&gt;УРОВЕНЬ 2. Модуль, скилл, YAML / CSV и два контура TOML&lt;/b&gt;  —  &lt;b&gt;За что отвечает:&lt;/b&gt; устройство модуля и скилла в src/.  &lt;b&gt;Что показывает:&lt;/b&gt; как module.yaml, module-help.csv и customize.toml превращаются в рабочие конфиги и индексы через resolve_config.py и resolve_customization.py." vertex="1">
+          <mxGeometry height="54" width="2460" x="80" y="646" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-yaml" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;module.yaml&lt;/b&gt; [в репо, не копируется в .agents/skills/]&lt;hr&gt;Есть в &lt;code&gt;core-skills/&lt;/code&gt;, &lt;code&gt;bmm-skills/&lt;/code&gt; и внешних модулях.&lt;br&gt;• &lt;code&gt;code, name, directories: [&quot;{output_folder}&quot;]&lt;/code&gt;&lt;br&gt;• &lt;code&gt;prompt:&lt;/code&gt; вопросы при install (пути артефактов, язык, уровень)&lt;br&gt;• &lt;code&gt;agents:&lt;/code&gt; (в bmm) краткий &lt;b&gt;essence roster&lt;/b&gt; 5 агентов&lt;br&gt;  (полная персона живёт в &lt;code&gt;agents/*/customize.toml&lt;/code&gt;)&lt;br&gt;Читают: &lt;code&gt;official-modules.js&lt;/code&gt;, &lt;code&gt;manifest-generator.js&lt;/code&gt;, &lt;code&gt;list-options.js&lt;/code&gt;." vertex="1">
+          <mxGeometry height="235" width="560" x="80" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-helpcsv" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;module-help.csv&lt;/b&gt; [в репо, по одному на модуль]&lt;hr&gt;13 колонок: &lt;code&gt;module, skill, display-name, menu-code, description, action, args, phase, preceded-by, followed-by, required, output-location, outputs&lt;/code&gt;.&lt;br&gt;Склейка при install: &lt;code&gt;Installer.mergeModuleHelpCatalogs()&lt;/code&gt; + &lt;code&gt;module-help-schema.js&lt;/code&gt;." vertex="1">
+          <mxGeometry height="150" width="560" x="80" y="1025" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-skillmd" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;SKILL.md&lt;/b&gt; (обязательный) [в репо]&lt;hr&gt;YAML frontmatter (&lt;code&gt;name, description&lt;/code&gt;) + &lt;code&gt;On Activation&lt;/code&gt; + шаги." vertex="1">
+          <mxGeometry height="90" width="560" x="820" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-cust" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;customize.toml&lt;/b&gt; [в репо, DO NOT EDIT]&lt;hr&gt;Дефолты &lt;code&gt;[workflow]&lt;/code&gt; или &lt;code&gt;[agent]&lt;/code&gt;: &lt;code&gt;principles&lt;/code&gt;, &lt;code&gt;persistent_facts&lt;/code&gt;, &lt;code&gt;[[agent.menu]]&lt;/code&gt;.&lt;br&gt;Перезаписывается при update." vertex="1">
+          <mxGeometry height="100" width="560" x="820" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-body" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;Тело скилла + локальные scripts/&lt;/b&gt; [в репо]&lt;hr&gt;Раскладки: single-file / плоские &lt;code&gt;step-NN.md&lt;/code&gt; / &lt;code&gt;steps/step-NN.md&lt;/code&gt; + &lt;code&gt;references/&lt;/code&gt;.&lt;br&gt;&lt;code&gt;scripts/&lt;/code&gt;: &lt;code&gt;resolve_party.py&lt;/code&gt;, &lt;code&gt;list_customizable_skills.py&lt;/code&gt;, &lt;code&gt;brain.py&lt;/code&gt;, &lt;code&gt;pick_methods.py&lt;/code&gt;." vertex="1">
+          <mxGeometry height="110" width="560" x="820" y="990" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-assets" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;assets/*.csv&lt;/b&gt; [в репо, локальные каталоги скилла]&lt;hr&gt;&lt;code&gt;bmad-brainstorming/assets/brain-methods.csv&lt;/code&gt; ← &lt;code&gt;brain_methods&lt;/code&gt; + &lt;code&gt;brain.py&lt;/code&gt;;&lt;br&gt;&lt;code&gt;bmad-advanced-elicitation/assets/methods.csv&lt;/code&gt; ← &lt;code&gt;methods_file&lt;/code&gt; + &lt;code&gt;pick_methods.py&lt;/code&gt;." vertex="1">
+          <mxGeometry height="90" width="560" x="820" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-ca" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;Контур A — resolve_config.py&lt;/b&gt; + config_utils.py [после install]&lt;hr&gt;Мерджит 4 слоя настроек проекта и пользователя:&lt;br&gt;1. &lt;code&gt;_bmad/config.toml&lt;/code&gt; → 2. &lt;code&gt;config.user.toml&lt;/code&gt; → 3. &lt;code&gt;_bmad/custom/config.toml&lt;/code&gt; → 4. &lt;code&gt;custom/config.user.toml&lt;/code&gt;.&lt;br&gt;Хранит &lt;code&gt;[core]&lt;/code&gt;, &lt;code&gt;[modules.*]&lt;/code&gt;, &lt;code&gt;[agents.*]&lt;/code&gt; (их читает &lt;code&gt;resolve_party.py&lt;/code&gt;)." vertex="1">
+          <mxGeometry height="150" width="880" x="1660" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-cb" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;Контур B — resolve_customization.py&lt;/b&gt; + config_utils.py&lt;hr&gt;Мерджит 3 слоя поведения конкретного скилла или агента:&lt;br&gt;1. &lt;code&gt;{skill-root}/customize.toml&lt;/code&gt; [в репо] → 2. &lt;code&gt;_bmad/custom/{skill}.toml&lt;/code&gt; → 3. &lt;code&gt;{skill}.user.toml&lt;/code&gt;.&lt;br&gt;Вызывается из &lt;code&gt;SKILL.md&lt;/code&gt; при &lt;code&gt;On Activation&lt;/code&gt;." vertex="1">
+          <mxGeometry height="130" width="880" x="1660" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-idx" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;_bmad/_config/&lt;/b&gt; [после install]&lt;hr&gt;• &lt;code&gt;bmad-help.csv&lt;/code&gt; — склейка всех &lt;code&gt;module-help.csv&lt;/code&gt;&lt;br&gt;• &lt;code&gt;skill-manifest.csv&lt;/code&gt; — из &lt;code&gt;ManifestGenerator&lt;/code&gt;; читают &lt;code&gt;installer.js&lt;/code&gt;, &lt;code&gt;shim-policy.js&lt;/code&gt;, &lt;code&gt;ide/_config-driven.js&lt;/code&gt;" vertex="1">
+          <mxGeometry height="130" width="430" x="1660" y="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-merge" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;structural_merge&lt;/b&gt; (config_utils.py)&lt;hr&gt;Скаляры override; таблицы deep-merge; массивы append; &lt;code&gt;[[agent.menu]]&lt;/code&gt; по &lt;code&gt;code/id&lt;/code&gt; replace-or-append. Оверрайды sparse." vertex="1">
+          <mxGeometry height="130" width="430" x="2110" y="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-help" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;bmad-help/SKILL.md&lt;/b&gt; читает собранный &lt;code&gt;bmad-help.csv&lt;/code&gt;." vertex="1">
+          <mxGeometry height="50" width="430" x="1660" y="1255" as="geometry" />
+        </mxCell>
+        <mxCell id="e-l2-yaml-ca" edge="1" parent="1" source="l2-yaml" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;fontSize=10;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" target="l2-ca" value="prompt: + collectAgentsFromModuleYaml() → _bmad/config.toml">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="730" />
+              <mxPoint x="2100" y="730" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-l2-skill-ca" edge="1" parent="1" source="l2-skillmd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;fontSize=10;dashed=1;exitX=1;exitY=0.4;entryX=0;entryY=0.25;" target="l2-ca" value="читает JSON (On Activation)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-l2-skill-cb" edge="1" parent="1" source="l2-skillmd" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;fontSize=10;dashed=1;exitX=1;exitY=0.8;entryX=0;entryY=0.25;" target="l2-cb" value="читает JSON">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1480" y="832" />
+              <mxPoint x="1480" y="962" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-l2-cust-cb" edge="1" parent="1" source="l2-cust" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.7;" target="l2-cb" value="слой 1 (дефолты)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1570" y="920" />
+              <mxPoint x="1570" y="1021" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-l2-assets-body" edge="1" parent="1" source="l2-assets" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#1565C0;dashed=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="l2-body" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-l2-csv-idx" edge="1" parent="1" source="l2-helpcsv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#1565C0;fontColor=#1565C0;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1565C0;fontSize=10;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" target="l2-idx" value="mergeModuleHelpCatalogs()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="1235" />
+              <mxPoint x="1550" y="1235" />
+              <mxPoint x="1550" y="1145" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-l2-help-idx" edge="1" parent="1" source="l2-help" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#1565C0;fontColor=#1565C0;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1565C0;fontSize=10;dashed=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="l2-idx" value="читает каталог">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="div2" parent="1" style="line;strokeWidth=2;dashed=1;strokeColor=#999999;html=1;" value="" vertex="1">
+          <mxGeometry height="10" width="2540" x="40" y="1365" as="geometry" />
+        </mxCell>
+        <mxCell id="band3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#f5faf5;strokeColor=#c8e0c2;strokeWidth=1;fontSize=12;" value="" vertex="1">
+          <mxGeometry height="600" width="2540" x="40" y="1385" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacingLeft=12;fillColor=#ffffff;strokeColor=#82b366;strokeWidth=1.5;fontSize=12;" value="&lt;b&gt;УРОВЕНЬ 3. Кастомизация и 4 хранилища информации&lt;/b&gt;  —  &lt;b&gt;За что отвечает:&lt;/b&gt; где хранить свои правки и где лежат данные BMAD.  &lt;b&gt;Что показывает:&lt;/b&gt; файлы _bmad/custom/ слева и 4 файловых хранилища проекта (единой БД нет) справа." vertex="1">
+          <mxGeometry height="54" width="2460" x="80" y="1401" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-rule" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" value="&lt;b&gt;Правило update&lt;/b&gt;&lt;hr&gt;&lt;code&gt;{skill-root}/customize.toml&lt;/code&gt; и &lt;code&gt;_bmad/config.toml&lt;/code&gt; перезаписываются при update. Свои правки — только в &lt;code&gt;_bmad/custom/&lt;/code&gt; [создаётся при install, не затирается]." vertex="1">
+          <mxGeometry height="70" width="1080" x="80" y="1480" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-scope" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#666666;fontSize=11;" value="&lt;b&gt;Команда vs личное&lt;/b&gt;&lt;hr&gt;&lt;code&gt;&amp;lt;name&amp;gt;.toml&lt;/code&gt; — командные, в git.&lt;br&gt;&lt;code&gt;&amp;lt;name&amp;gt;.user.toml&lt;/code&gt; — личные, в &lt;code&gt;.gitignore&lt;/code&gt;." vertex="1">
+          <mxGeometry height="110" width="520" x="80" y="1570" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-facts" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;Что кастомизируется&lt;/b&gt;&lt;hr&gt;&lt;code&gt;persistent_facts&lt;/code&gt; (строки и &lt;code&gt;file:&lt;/code&gt; glob), &lt;code&gt;principles&lt;/code&gt;, &lt;code&gt;activation_steps_prepend/append&lt;/code&gt;, &lt;code&gt;[[agent.menu]]&lt;/code&gt;, пути и язык." vertex="1">
+          <mxGeometry height="115" width="520" x="80" y="1700" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-tool" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;bmad-customize&lt;/b&gt; (src/core-skills/bmad-customize/)&lt;hr&gt;Использует &lt;code&gt;scripts/list_customizable_skills.py&lt;/code&gt;.&lt;br&gt;Пишет per-skill &lt;code&gt;[agent]&lt;/code&gt; / &lt;code&gt;[workflow]&lt;/code&gt; оверрайды в &lt;code&gt;_bmad/custom/{skill}.toml&lt;/code&gt;." vertex="1">
+          <mxGeometry height="110" width="520" x="640" y="1570" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-manual" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;Ручная правка&lt;/b&gt;&lt;hr&gt;Центральный &lt;code&gt;_bmad/custom/config.toml&lt;/code&gt; не пишет &lt;code&gt;bmad-customize&lt;/code&gt; — правится вручную (пути, &lt;code&gt;[agents.*]&lt;/code&gt;)." vertex="1">
+          <mxGeometry height="115" width="520" x="640" y="1700" as="geometry" />
+        </mxCell>
+        <mxCell id="stores-frame" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fillColor=#f9f9f9;strokeColor=#444444;strokeWidth=2;fontSize=13;" value="&lt;b&gt;Файловые хранилища проекта&lt;/b&gt;" vertex="1">
+          <mxGeometry height="480" width="1210" x="1320" y="1481" as="geometry" />
+        </mxCell>
+        <mxCell id="store1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" value="&lt;b&gt;1. Статическая память&lt;/b&gt;&lt;hr&gt;&lt;code&gt;customize.toml&lt;/code&gt; [в репо] + &lt;code&gt;_bmad/custom/*&lt;/code&gt; + &lt;code&gt;_bmad/config*.toml&lt;/code&gt; [после install]. Правила и &lt;code&gt;persistent_facts&lt;/code&gt; при каждой активации." vertex="1">
+          <mxGeometry height="90" width="1080" x="1360" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-memlog" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;memlog.py&lt;/b&gt;&lt;hr&gt;&lt;code&gt;src/scripts/&lt;/code&gt;&lt;br&gt;&lt;code&gt;init / append&lt;/code&gt;" vertex="1">
+          <mxGeometry height="110" width="180" x="1360" y="1670" as="geometry" />
+        </mxCell>
+        <mxCell id="store2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;2. Оперативная память прогона&lt;/b&gt;&lt;hr&gt;&lt;code&gt;{doc_workspace}/.memlog.md&lt;/code&gt; [появится при работе скилла]. Append-only (&lt;code&gt;decision, constraint&lt;/code&gt;), переживает сжатие контекста." vertex="1">
+          <mxGeometry height="110" width="380" x="1650" y="1670" as="geometry" />
+        </mxCell>
+        <mxCell id="store3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;3. Память party-mode&lt;/b&gt;&lt;hr&gt;&lt;code&gt;{output_folder}/party-mode/memories/&amp;lt;id&amp;gt;/.memlog.md&lt;/code&gt; [появится при party-mode]." vertex="1">
+          <mxGeometry height="110" width="380" x="2060" y="1670" as="geometry" />
+        </mxCell>
+        <mxCell id="store4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;4. Долговременная память проекта&lt;/b&gt; [появятся лениво]&lt;hr&gt;&lt;code&gt;{output_folder}&lt;/code&gt; [создаётся при install]. &lt;code&gt;planning_artifacts/&lt;/code&gt;, &lt;code&gt;implementation_artifacts/&lt;/code&gt;, &lt;code&gt;project_knowledge&lt;/code&gt; (&lt;code&gt;docs/&lt;/code&gt;), код + managed-блок &lt;code&gt;AGENTS.md&lt;/code&gt; (&lt;code&gt;bmad-project-context&lt;/code&gt;)." vertex="1">
+          <mxGeometry height="115" width="1080" x="1360" y="1820" as="geometry" />
+        </mxCell>
+        <mxCell id="e-l3-tool-s1" edge="1" parent="1" source="l3-tool" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.35;" target="store1" value="пишет {skill}.toml">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1210" y="1625" />
+              <mxPoint x="1210" y="1551" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-l3-manual-s1" edge="1" parent="1" source="l3-manual" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#7B1FA2;fontColor=#7B1FA2;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#7B1FA2;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.75;" target="store1" value="пишет config.toml">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1275" y="1757" />
+              <mxPoint x="1275" y="1587" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-l3-mem-s2" edge="1" parent="1" source="l3-memlog" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#1B8A3D;fontColor=#1B8A3D;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1B8A3D;fontSize=10;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="store2" value="init / append">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-l3-mem-s3" edge="1" parent="1" source="l3-memlog" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#1B8A3D;fontColor=#1B8A3D;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1B8A3D;fontSize=10;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" target="store3" value="init / append">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1450" y="1640" />
+              <mxPoint x="2250" y="1640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-l3-s1-s4" edge="1" parent="1" source="store1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2.5;strokeColor=#1565C0;fontColor=#1565C0;fontStyle=1;labelBackgroundColor=#ffffff;labelBorderColor=#1565C0;fontSize=10;dashed=1;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" target="store4" value="пути из config">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2495" y="1565" />
+              <mxPoint x="2495" y="1877" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
