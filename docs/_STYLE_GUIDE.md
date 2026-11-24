@@ -374,8 +374,6 @@ Yes. The `bmad-correct-course` workflow handles scope changes mid-implementation
 Before submitting documentation changes:
 
 ```bash
-npm run docs:fix-links            # Preview link format fixes
-npm run docs:fix-links -- --write # Apply fixes
-npm run docs:validate-links       # Check links exist
-npm run docs:build                # Verify no build errors
+npm run lint:md                   # Markdown lint
+npm run quality                   # Full local quality suite
 ```

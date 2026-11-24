@@ -1,8 +1,4 @@
-![BMad Method](banner-bmad-method.png)
-
-
 [![Version](https://img.shields.io/npm/v/bmad-method?color=blue&label=version)](https://www.npmjs.com/package/bmad-method)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Community-7289da?logo=discord&logoColor=white)](https://discord.gg/gk8jAdXWmj)
 
 **Agile Ai Driven Development — turn an idea or change request into working software without giving up the thinking.**
@@ -55,10 +51,6 @@ Install the core method or add official modules for specialized work.
 | **[BMad Loop](https://github.com/bmad-code-org/bmad-loop)** | Builds, verifies, and retros a whole epic unattended |
 | **[BMad Game Dev Studio](https://github.com/bmad-code-org/bmad-module-game-dev-studio)** | Ideate, design, and build games in any framework, including Unity, Unreal, Godot, and Phaser |
 
-## Plan on the Web
-
-[Web bundles](https://bmadcode.com/web-bundles/) package selected BMad workflows as Google Gemini Gems and ChatGPT Custom GPTs. Use them for planning in your existing web subscription, then bring the resulting artifacts into your AI coding tool for implementation.
-
 ## Documentation
 
 - **[Build Your First Change](https://docs.bmad-method.org/start/build-your-first-change/)** — Install BMad and build a small project.
@@ -76,13 +68,3 @@ Install the core method or add official modules for specialized work.
 ## Support and Contributing
 
 BMad is free for everyone and always will be. Star the repository, [buy me a coffee](https://buymeacoffee.com/bmad), or email <contact@bmadcode.com> for corporate sponsorship.
-
-Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
-
-## License
-
-MIT License — see [LICENSE](LICENSE) for details.
-
-**BMad** and **BMAD-METHOD** are trademarks of BMad Code, LLC. See [TRADEMARK.md](TRADEMARK.md) for details.
-
-If you would like to contribute, join us in the discord and read [CONTRIBUTORS.md](CONTRIBUTORS.md) first.

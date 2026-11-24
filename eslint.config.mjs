@@ -16,13 +16,10 @@ export default [
       '_bmad*/**',
       // Build output
       'build/**',
-      // Website uses ESM/Astro - separate linting ecosystem
-      'website/**',
       // Gitignored patterns
       'z*/**', // z-samples, z1, z2, etc.
       '.claude/**',
       '.codex/**',
-      '.github/chatmodes/**',
       '.agent/**',
       '.agentvibes/**',
       '.kiro/**',
@@ -122,23 +119,6 @@ export default [
     files: ['eslint.config.mjs'],
     rules: {
       'n/no-unpublished-import': 'off',
-    },
-  },
-
-  // GitHub workflow files in this repo may use empty mapping values
-  {
-    files: ['.github/workflows/**/*.yaml'],
-    rules: {
-      'yml/no-empty-mapping-value': 'off',
-    },
-  },
-
-  // Other GitHub YAML files may intentionally use empty values and reserved filenames
-  {
-    files: ['.github/**/*.yaml'],
-    rules: {
-      'yml/no-empty-mapping-value': 'off',
-      'unicorn/filename-case': 'off',
     },
   },
 ];
